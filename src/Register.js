@@ -23,7 +23,9 @@ const Register = () => {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    userRef.current.focus();
+    if (user) {
+      userRef.current.focus();
+    }
   }, []);
 
   useEffect(() => {
@@ -40,8 +42,24 @@ const Register = () => {
     setValidPwd(result);
     const match = pwd === matchPwd;
     setValidMatch(match);
-  }, []);
+  }, [pwd, matchPwd]);
 
-  return <div>Register</div>;
+  useEffect(() => {
+    setErrMsg("");
+  }, [user, pwd, matchPwd]);
+
+  return (
+    <section>
+      <p
+        ref={errRef}
+        className={errMsg ? "errmsg" : "offscreen"}
+        aria-live="assertive"
+      >
+        {errMsg}
+        <h1>Register</h1>
+      </p>
+      <form></form>
+    </section>
+  );
 };
 export default Register;

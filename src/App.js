@@ -5,7 +5,6 @@ import Register from "./Register";
 function App() {
   return (
     <main className="App">
-      123
       <Register />
     </main>
   );
